@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MovieRating</string>
+    <string name="btnDelete">Delete Record</string>
+    <string name="btn_add_record">ADD RECORD</string>
+    <string name="btnAddRecord">ADD RECORD</string>
+    <string name="edMovieName" />
+    <string name="btnSave">SAVE</string>
+    <string name="btnCancel">CANCEL</string>
+</resources>
