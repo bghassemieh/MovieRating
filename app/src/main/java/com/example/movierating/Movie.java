@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class Movie implements Serializable {
 
-    private int movieId;
-    private String movieName;
-    private float movieRating;
+    private int movieId = 0;
+    private String movieName = "";
+    private float movieRating = 0.0f;
 
     public Movie() {
 

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -64,11 +63,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(v.getContext(), String.valueOf(movie.getMovieName() + " " +
-                        "Deleted:"), Toast.LENGTH_LONG).show();
                 int position = viewHolder.getAdapterPosition();
                 movieList.remove(position);
-                notifyDataSetChanged();
+               // notifyDataSetChanged();
+                notifyItemRemoved(position);
+                Toast.makeText(v.getContext(), "Record deleted:", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -87,7 +86,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         });
 
     }
-
 
     @Override
     public int getItemCount() {

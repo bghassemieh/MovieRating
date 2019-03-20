@@ -10,12 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    Movie count = new Movie();
     private List<Movie> movieList = new ArrayList<>();
     private MovieAdapter movieAdapter;
 
@@ -23,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         Button btnAddRecord = findViewById(R.id.btnAddRecord);
 
@@ -36,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    int i =1;
+
     @Override
     protected void
     onActivityResult(int requestCode, int resultCode, Intent data) {
-        int countArray = movieList.size()+1;
-        // Handle Return
+
         if(resultCode == RESULT_OK && requestCode == 1)
         {
             if (data.hasExtra("movieName"))
@@ -50,15 +49,14 @@ public class MainActivity extends AppCompatActivity {
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                 recycle.setLayoutManager(layoutManager);
                 recycle.setItemAnimator(new DefaultItemAnimator());
-
-                // OPTIONAL
                 recycle.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
                 recycle.setAdapter(movieAdapter);
-                movieList.add(new Movie(countArray,data.getStringExtra("movieName"),
+                count.setMovieId(i);
+                movieList.add(new Movie(count.getMovieId(),data.getStringExtra("movieName"),
                         data.getFloatExtra("movieRate", 0.0f)));
                 Toast.makeText(getApplicationContext(),"Record Added", Toast.LENGTH_LONG).show();
             }
-
+            i=i+1;
         }
         if(resultCode == RESULT_CANCELED && requestCode == 1)
         {
