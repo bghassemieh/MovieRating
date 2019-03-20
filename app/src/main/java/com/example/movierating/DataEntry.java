@@ -26,10 +26,11 @@ public class DataEntry extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data.putExtra("movieName", edMovieName.getText().toString());
-                data.putExtra("movieRate",ratingBar.getRating());
-                setResult(RESULT_OK,data);
-                finish();
+
+                    data.putExtra("movieName", edMovieName.getText().toString());
+                    data.putExtra("movieRate",ratingBar.getRating());
+                    setResult(RESULT_OK,data);
+                    finish();
             }
         });
 
