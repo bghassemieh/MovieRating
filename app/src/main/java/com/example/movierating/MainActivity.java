@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         recycle.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
 
         DBClass db = new DBClass(this);
-       // movieList.addAll(db.getMovies());
+        movieList.addAll(db.getMovies());
         recycle.setAdapter(movieAdapter);
 
 
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                RecyclerView recycle = findViewById(R.id.recycle1);
                movieAdapter = new MovieAdapter(movieList);
                DBClass db = new DBClass(this);
-         //      movieList.addAll(db.getMovies());
+               movieList.addAll(db.getMovies());
                recycle.setAdapter(movieAdapter);
                movieAdapter.notifyDataSetChanged();
             Toast.makeText(getApplicationContext(),"Record Added", Toast.LENGTH_LONG).show();
