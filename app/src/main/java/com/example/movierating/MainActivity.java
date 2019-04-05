@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         recycle.setAdapter(movieAdapter);
 
 
+
+
         Button btnAddRecord = findViewById(R.id.btnAddRecord);
 
         btnAddRecord.setOnClickListener(new View.OnClickListener() {
