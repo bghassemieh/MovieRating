@@ -4,18 +4,55 @@ import java.io.Serializable;
 
 public class Movie implements Serializable {
 
-    private int movieId = 0;
-    private String movieName = "";
-    private float movieRating = 0.0f;
+    public static final String TABLE_NAME = "movies";
+
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_DESCRIPTION = "description";
+    public static final String COLUMN_RATING = "rating";
+    public static final String COLUMN_ACTIVEFLAG = "active";
+
+
+    public static final String CREATE_TABLE =
+            "CREATE TABLE " + TABLE_NAME + " ("
+            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_NAME + " TEXT,"
+            + COLUMN_DESCRIPTION + " TEXT,"
+            + COLUMN_RATING + " FLOAT,"
+            + COLUMN_ACTIVEFLAG + " INTEGER)";
+
+    private int movieId;
+    private String movieName;
+    private String movieDescription;
+    private float movieRating;
+    private boolean movieActiveFlag;
 
     public Movie() {
 
     }
 
-    public Movie(int movieId, String movieName, float movieRating) {
-        this.movieId = movieId;
+    public Movie(String movieName, String movieDescription, float movieRating, boolean movieActiveFlag) {
         this.movieName = movieName;
+        this.movieDescription = movieDescription;
         this.movieRating = movieRating;
+        this.movieActiveFlag = movieActiveFlag;
+    }
+
+
+    public String getMovieDescription() {
+        return movieDescription;
+    }
+
+    public void setMovieDescription(String movieDescriptio) {
+        this.movieDescription = movieDescriptio;
+    }
+
+    public boolean isMovieActiveFlag() {
+        return movieActiveFlag;
+    }
+
+    public void setMovieActiveFlag(boolean movieActiveFlag) {
+        this.movieActiveFlag = movieActiveFlag;
     }
 
     public int getMovieId() {

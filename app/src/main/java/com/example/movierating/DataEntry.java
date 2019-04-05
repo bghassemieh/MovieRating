@@ -16,9 +16,7 @@ public class DataEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_entry);
 
-        final Intent data = new Intent();
-        final EditText edMovieName = findViewById(R.id.edMovieName);
-        final RatingBar ratingBar = findViewById(R.id.ratingBarDataEntry);
+
         Button btnSave = findViewById(R.id.btnSave);
         Button btnCancel = findViewById(R.id.btnCancel);
 
@@ -27,10 +25,21 @@ public class DataEntry extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    data.putExtra("movieName", edMovieName.getText().toString());
-                    data.putExtra("movieRate",ratingBar.getRating());
-                    setResult(RESULT_OK,data);
-                    finish();
+                DBClass db = new DBClass(getApplicationContext());
+
+                EditText edMovieName = findViewById(R.id.edMovieName);
+                EditText edMovieDesc = findViewById(R.id.edMovieDescription);
+                RatingBar ratingBar = findViewById(R.id.ratingBarDataEntry);
+
+                Movie newMovie = new Movie(edMovieName.getText().toString(),edMovieDesc.getText().toString(),
+                        Float.valueOf(ratingBar.getRating()), true);
+
+                db.addMovie(newMovie);
+
+                Intent data = new Intent();
+                setResult(RESULT_OK,data);
+                DataEntry.this.finish();
+
             }
         });
 

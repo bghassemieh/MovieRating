@@ -35,6 +35,17 @@
             android:layout_height="match_parent"
             android:layout_weight="0"
             android:text="@string/btnAddRecord" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton"
+            android:layout_width="199dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="ToggleButton"
+            android:textOff="Show Deleted Items"
+            android:textOn="Hide Deleted Items" />
     </LinearLayout>
 
 </LinearLayout>

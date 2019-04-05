@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    Movie count = new Movie();
     private List<Movie> movieList = new ArrayList<>();
     private MovieAdapter movieAdapter;
 
@@ -22,6 +21,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        RecyclerView recycle = findViewById(R.id.recycle1);
+        movieAdapter = new MovieAdapter(movieList);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recycle.setLayoutManager(layoutManager);
+        recycle.setItemAnimator(new DefaultItemAnimator());
+        recycle.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+
+        DBClass db = new DBClass(this);
+        movieList.addAll(db.getMovies());
+        recycle.setAdapter(movieAdapter);
+
 
         Button btnAddRecord = findViewById(R.id.btnAddRecord);
 
@@ -34,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    int i =1;
+
 
     @Override
     protected void
@@ -42,26 +54,15 @@ public class MainActivity extends AppCompatActivity {
 
         if(resultCode == RESULT_OK && requestCode == 1)
         {
-            if (data.hasExtra("movieName"))
-            {
-                RecyclerView recycle = findViewById(R.id.recycle1);
-                movieAdapter = new MovieAdapter(movieList);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-                recycle.setLayoutManager(layoutManager);
-                recycle.setItemAnimator(new DefaultItemAnimator());
-                recycle.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-                recycle.setAdapter(movieAdapter);
-                count.setMovieId(i);
-                movieList.add(new Movie(count.getMovieId(),data.getStringExtra("movieName"),
-                        data.getFloatExtra("movieRate", 0.0f)));
-                Toast.makeText(getApplicationContext(),"Record Added", Toast.LENGTH_LONG).show();
-            }
-            i=i+1;
-        }
-        if(resultCode == RESULT_CANCELED && requestCode == 1)
-        {
-            Toast.makeText(getApplicationContext(),"Cancelled", Toast.LENGTH_LONG).show();
-        }
+
+               RecyclerView recycle = findViewById(R.id.recycle1);
+               movieAdapter = new MovieAdapter(movieList);
+               DBClass db = new DBClass(this);
+               movieList.addAll(db.getMovies());
+               recycle.setAdapter(movieAdapter);
+               movieAdapter.notifyDataSetChanged();
+            Toast.makeText(getApplicationContext(),"Record Added", Toast.LENGTH_LONG).show();
+       }
     }
 
 }

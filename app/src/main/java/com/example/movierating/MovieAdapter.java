@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +23,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     {
         TextView mId, mName;
         RatingBar rbar;
-        Button btnDeleteRecord;
+        ImageButton imgBtnDel;
+        EditText mDescription;
 
         MyViewHolder(View view)
         {
@@ -30,7 +33,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             mId = view.findViewById(R.id.txtShowId);
             mName = view.findViewById(R.id.txtShowName);
             rbar = view.findViewById(R.id.ratingBar1);
-            btnDeleteRecord = view.findViewById(R.id.btnDelete);
+            imgBtnDel = view.findViewById(R.id.imgBtnDel);
+            mDescription = view.findViewById(R.id.edMovieDescription);
         }
     }
 
@@ -57,33 +61,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
         viewHolder.mId.setText(String.valueOf(movie.getMovieId()));
         viewHolder.mName.setText(movie.getMovieName());
+        viewHolder.mDescription.setText(movie.getMovieDescription());
         viewHolder.rbar.setRating(Float.valueOf(movie.getMovieRating()));
-
-        viewHolder.btnDeleteRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                int position = viewHolder.getAdapterPosition();
-                movieList.remove(position);
-               // notifyDataSetChanged();
-                notifyItemRemoved(position);
-                Toast.makeText(v.getContext(), "Record deleted:", Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-
- viewHolder.rbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                int pos = viewHolder.getAdapterPosition();
-                float valRate = viewHolder.rbar.getRating();
-                movieList.get(pos).setMovieRating(valRate);
-                notifyDataSetChanged();
-                Toast.makeText(ratingBar.getContext(),
-                        "Rate value changed to:" + "   "+ movieList.get(pos).getMovieRating(), Toast.LENGTH_LONG).show();
-            }
-        });
 
     }
 
