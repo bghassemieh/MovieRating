@@ -33,6 +33,7 @@ public class DBClass extends SQLiteOpenHelper {
 
     public List<Movie> getMovies()
     {
+
         SQLiteDatabase db = getReadableDatabase();
 
         String selectQuery = "select * from " + Movie.TABLE_NAME + " where " + Movie.COLUMN_ACTIVEFLAG + " =1";

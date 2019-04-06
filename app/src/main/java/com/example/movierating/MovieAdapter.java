@@ -1,17 +1,15 @@
 package com.example.movierating;
 
-import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         TextView mId, mName;
         RatingBar rbar;
         ImageButton imgBtnDel;
-        EditText mDescription;
+        TextView mDescription;
 
         MyViewHolder(View view)
         {
@@ -34,7 +32,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             mName = view.findViewById(R.id.txtShowName);
             rbar = view.findViewById(R.id.ratingBar1);
             imgBtnDel = view.findViewById(R.id.imgBtnDel);
-            mDescription = view.findViewById(R.id.edMovieDescription);
+            mDescription = view.findViewById(R.id.txtShowDesc);
         }
     }
 
@@ -54,7 +52,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         return new MyViewHolder(itemView);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+
     @Override
     public void onBindViewHolder(@NonNull final MovieAdapter.MyViewHolder viewHolder, int i) {
         final Movie movie = movieList.get(i);
