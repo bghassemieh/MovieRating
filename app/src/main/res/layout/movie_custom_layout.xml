@@ -71,6 +71,7 @@
         android:numStars="5"
         android:scaleX=".4"
         android:scaleY=".4"
+        android:progressTint="@android:color/holo_green_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtMovieRating"

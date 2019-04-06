@@ -68,7 +68,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             @Override
             public void onClick(View v) {
 
-                DBClass db = new DBClass((v.getContext()));
+                DBClass db = new DBClass(v.getContext());
                 db.updateActiveFlag(movieList.get(viewHolder.getAdapterPosition()));
                 movieList.remove(viewHolder.getAdapterPosition());
                 Toast.makeText(v.getContext(), "Record Deleted", Toast.LENGTH_SHORT).show();
@@ -76,7 +76,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
             }
         });
-    }
+
+        viewHolder.rbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                float rbChange = rating;
+                DBClass db = new DBClass(ratingBar.getContext());
+                db.updateRatingBarValue(movieList.get(viewHolder.getAdapterPosition()),rbChange);
+
+                Toast.makeText(ratingBar.getContext(), "Rating Bar value was changed to --> " + rbChange, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+}
 
     @Override
     public int getItemCount() {

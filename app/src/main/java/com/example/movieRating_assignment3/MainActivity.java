@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -33,18 +34,32 @@ public class MainActivity extends AppCompatActivity {
         recycle.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
 
         DBClass db = new DBClass(this);
-        movieList.addAll(db.getMovies());
+        movieList.addAll(db.getMovies_Active());
         recycle.setAdapter(movieAdapter);
 
         Button btnAddRecord = findViewById(R.id.btnAddRecord);
         ToggleButton tglBtn = findViewById(R.id.tgBtnShowHideDeletedRecord);
-        tglBtn.setOnClickListener(new View.OnClickListener() {
+        tglBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                DBClass db = new DBClass(getApplicationContext());
+                RecyclerView recyclerView = findViewById(R.id.recycle1);
+                movieList.clear();
+
+                if (isChecked){
+                    movieList.addAll(db.getMovies_Inactive());
+                    recyclerView.setAdapter(movieAdapter);
+                    movieAdapter.notifyDataSetChanged();
+                    Toast.makeText(getApplicationContext(),"Inactive Movies", Toast.LENGTH_LONG).show();
+                }else{
+                    movieList.addAll(db.getMovies_Active());
+                    recyclerView.setAdapter(movieAdapter);
+                    movieAdapter.notifyDataSetChanged();
+                    Toast.makeText(getApplicationContext(),"Active Movies", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
-
 
         btnAddRecord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             RecyclerView recycle = findViewById(R.id.recycle1);
             movieAdapter = new MovieAdapter(movieList);
             DBClass db = new DBClass(this);
-            movieList.addAll(db.getMovies());
+            movieList.addAll(db.getMovies_Active());
             recycle.setAdapter(movieAdapter);
             movieAdapter.notifyDataSetChanged();
             Toast.makeText(getApplicationContext(),"Record Added", Toast.LENGTH_LONG).show();
