@@ -40,6 +40,7 @@
             android:id="@+id/tgBtnShowHideDeletedRecord"
             android:layout_width="199dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
             android:layout_weight="0"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"

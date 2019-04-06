@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,11 +46,13 @@ public class MainActivity extends AppCompatActivity {
                 movieList.clear();
 
                 if (isChecked){
+                    setTitle("Deleted Items List");
                     movieList.addAll(db.getMovies_Inactive());
                     recyclerView.setAdapter(movieAdapter);
                     movieAdapter.notifyDataSetChanged();
                     Toast.makeText(getApplicationContext(),"Deleted Items List", Toast.LENGTH_LONG).show();
                 }else{
+                    setTitle("Active Movies Lists");
                     movieList.addAll(db.getMovies_Active());
                     recyclerView.setAdapter(movieAdapter);
                     movieAdapter.notifyDataSetChanged();
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(resultCode == RESULT_OK && requestCode == 1)
         {
-
+            setTitle("Inserted new Items List");
             movieList.clear();
 
             RecyclerView recycle = findViewById(R.id.recycle1);
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(resultCode == RESULT_CANCELED && requestCode == 1)
         {
+            setTitle("Active Movies Lists");
             Toast.makeText(getApplicationContext(),"Cancelled", Toast.LENGTH_LONG).show();
         }
 
