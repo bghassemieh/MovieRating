@@ -1,4 +1,4 @@
-package com.example.movieRating_assignment3;
+package com.example.movieRatingDB_assignment3;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

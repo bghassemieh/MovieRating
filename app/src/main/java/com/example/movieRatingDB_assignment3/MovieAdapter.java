@@ -1,4 +1,4 @@
-package com.example.movieRating_assignment3;
+package com.example.movieRatingDB_assignment3;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
