@@ -1,4 +1,4 @@
-package com.example.movierating;
+package com.example.movieRating_assignment3;
 
 import org.junit.Test;
 

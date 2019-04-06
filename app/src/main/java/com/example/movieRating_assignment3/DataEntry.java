@@ -1,4 +1,4 @@
-package com.example.movierating;
+package com.example.movieRating_assignment3;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +16,12 @@ public class DataEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_entry);
 
-
+        final EditText edMovieName = findViewById(R.id.edMovieName);
+        final EditText edMovieDesc = findViewById(R.id.edMovieDescription);
+        final RatingBar ratingBar = findViewById(R.id.ratingBarDataEntry);
         Button btnSave = findViewById(R.id.btnSave);
         Button btnCancel = findViewById(R.id.btnCancel);
-
+        final Intent data = new Intent();
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,18 +29,13 @@ public class DataEntry extends AppCompatActivity {
 
                 DBClass db = new DBClass(getApplicationContext());
 
-                EditText edMovieName = findViewById(R.id.edMovieName);
-                EditText edMovieDesc = findViewById(R.id.edMovieDescription);
-                RatingBar ratingBar = findViewById(R.id.ratingBarDataEntry);
-
                 Movie newMovie = new Movie(edMovieName.getText().toString(),edMovieDesc.getText().toString(),
                         ratingBar.getRating(), true);
 
                 db.addMovie(newMovie);
 
-                Intent data = new Intent();
                 setResult(RESULT_OK,data);
-                DataEntry.this.finish();
+                finish();
 
             }
         });
@@ -46,7 +43,7 @@ public class DataEntry extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setResult(RESULT_CANCELED);
+                setResult(RESULT_CANCELED,data);
                 finish();
             }
         });

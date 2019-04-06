@@ -1,4 +1,4 @@
-package com.example.movierating;
+package com.example.movieRating_assignment3;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -56,6 +56,16 @@ public class DBClass extends SQLiteOpenHelper {
         }
         db.close();
         return movieList;
+    }
+
+    public Movie updateActiveFlag(Movie m)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Movie.COLUMN_ACTIVEFLAG, 0);
+        db.update(Movie.TABLE_NAME, contentValues, Movie.COLUMN_ID + " = ?",
+                new String[]{Integer.toString(m.getMovieId())});
+        return m;
     }
 
     @Override

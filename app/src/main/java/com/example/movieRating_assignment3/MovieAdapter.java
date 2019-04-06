@@ -1,14 +1,16 @@
-package com.example.movierating;
+package com.example.movieRating_assignment3;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
+import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.List;
@@ -61,6 +63,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         viewHolder.mName.setText(movie.getMovieName());
         viewHolder.mDescription.setText(movie.getMovieDescription());
         viewHolder.rbar.setRating(movie.getMovieRating());
+
+        viewHolder.imgBtnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DBClass db = new DBClass((v.getContext()));
+                db.updateActiveFlag(movieList.get(viewHolder.getAdapterPosition()));
+                movieList.remove(viewHolder.getAdapterPosition());
+                Toast.makeText(v.getContext(), "Record Deleted", Toast.LENGTH_SHORT).show();
+                notifyDataSetChanged();
+
+            }
+        });
     }
 
     @Override
