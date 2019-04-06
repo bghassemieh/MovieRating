@@ -50,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
                     movieList.addAll(db.getMovies_Inactive());
                     recyclerView.setAdapter(movieAdapter);
                     movieAdapter.notifyDataSetChanged();
-                    Toast.makeText(getApplicationContext(),"Inactive Movies", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Deleted Items List", Toast.LENGTH_LONG).show();
                 }else{
                     movieList.addAll(db.getMovies_Active());
                     recyclerView.setAdapter(movieAdapter);
                     movieAdapter.notifyDataSetChanged();
-                    Toast.makeText(getApplicationContext(),"Active Movies", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Movies List", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -74,8 +74,12 @@ public class MainActivity extends AppCompatActivity {
     protected void
     onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        ToggleButton tglSetting = findViewById(R.id.tgBtnShowHideDeletedRecord);
+        tglSetting.setChecked(false);
+
         if(resultCode == RESULT_OK && requestCode == 1)
         {
+
             movieList.clear();
 
             RecyclerView recycle = findViewById(R.id.recycle1);

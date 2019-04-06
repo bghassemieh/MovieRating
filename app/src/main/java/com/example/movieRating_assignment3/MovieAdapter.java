@@ -1,6 +1,5 @@
 package com.example.movieRating_assignment3;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
-import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +36,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         }
     }
 
-
     MovieAdapter(List<Movie> movieList)
     {
         this.movieList = movieList;
@@ -53,7 +50,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
         return new MyViewHolder(itemView);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull final MovieAdapter.MyViewHolder viewHolder, int i) {
@@ -83,9 +79,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
                 float rbChange = rating;
                 DBClass db = new DBClass(ratingBar.getContext());
                 db.updateRatingBarValue(movieList.get(viewHolder.getAdapterPosition()),rbChange);
-
                 Toast.makeText(ratingBar.getContext(), "Rating Bar value was changed to --> " + rbChange, Toast.LENGTH_SHORT).show();
-
             }
         });
 }
