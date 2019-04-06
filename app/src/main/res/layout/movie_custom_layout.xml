@@ -33,13 +33,16 @@
         android:id="@+id/txtMovieRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="8dp"
         android:text="Rating:"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtShowDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/txtShowDesc"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/txtShowId"
@@ -65,17 +68,17 @@
         android:id="@+id/ratingBar1"
         android:layout_width="wrap_content"
         android:layout_height="52dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:numStars="5"
+        android:progressTint="@android:color/holo_green_dark"
         android:scaleX=".4"
         android:scaleY=".4"
-        android:progressTint="@android:color/holo_green_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtMovieRating"
-        app:layout_constraintTop_toBottomOf="@+id/txtShowDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/txtShowDesc"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/txtShowDesc"
@@ -94,7 +97,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="136dp"
         android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ratingBar1"
         app:layout_constraintTop_toTopOf="parent"
