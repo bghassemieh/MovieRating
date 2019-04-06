@@ -32,7 +32,7 @@ public class DataEntry extends AppCompatActivity {
                 RatingBar ratingBar = findViewById(R.id.ratingBarDataEntry);
 
                 Movie newMovie = new Movie(edMovieName.getText().toString(),edMovieDesc.getText().toString(),
-                        Float.valueOf(ratingBar.getRating()), true);
+                        ratingBar.getRating(), true);
 
                 db.addMovie(newMovie);
 

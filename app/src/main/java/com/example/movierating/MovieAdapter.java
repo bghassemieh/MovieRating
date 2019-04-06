@@ -62,10 +62,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         viewHolder.mId.setText(String.valueOf(movie.getMovieId()));
         viewHolder.mName.setText(movie.getMovieName());
         viewHolder.mDescription.setText(movie.getMovieDescription());
-        viewHolder.rbar.setRating(Float.valueOf(movie.getMovieRating()));
-
-
-
+        viewHolder.rbar.setRating(movie.getMovieRating());
     }
 
     @Override

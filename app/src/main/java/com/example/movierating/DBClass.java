@@ -19,7 +19,7 @@ public class DBClass extends SQLiteOpenHelper {
 
     public Movie addMovie(Movie m)
     {
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(Movie.COLUMN_NAME, m.getMovieName());
