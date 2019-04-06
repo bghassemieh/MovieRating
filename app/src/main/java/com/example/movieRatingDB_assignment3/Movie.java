@@ -1,3 +1,4 @@
+//Student name: Bahman Ghassemieh
 package com.example.movieRatingDB_assignment3;
 
 import java.io.Serializable;
